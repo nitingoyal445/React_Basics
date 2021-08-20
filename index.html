@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Demo</title>
+
+    <!-- React logic -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <!-- Platform Specific code -->
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <!-- Babel compiler => compiles JSX code into JS code -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+//React ka code
+//JSX => Javascript XML 
+
+let names = ["steve", "tony", "natasha", "bruce", "thanos"];
+
+
+//functional components => component name always start with capital letter
+function Hello(props){
+    console.log(props);
+    let {name} = props;
+     return <h1>Hello from {name}</h1>
+    // return <h1>Hello from {props.name} and age {props.age}</h1>
+}
+
+// function HelloParent(){
+//     return <React.Fragment>
+//         <Hello name="Steve"></Hello>
+//         <Hello name="Tony"></Hello>
+//         <Hello name="Natasha"></Hello>
+//         <Hello name="mark"></Hello>
+//         <Hello name="thanos"></Hello>
+//     </React.Fragment>
+// }
+
+function HelloParent(){
+    return <React.Fragment>
+        {names.map(function(name){
+            return <Hello name ={name}></Hello>
+        })}
+        </React.Fragment>
+}
+
+
+// what to render, and where to render
+// ReactDOM.render( React.createElement("h1", null, "Hello from React !!")  , document.getElementById("root"));
+// ReactDOM.render( <Hello name="Steve" age="24"></Hello>  , document.getElementById("root"));
+ReactDOM.render( <HelloParent/> , document.getElementById("root"));
+</script>
+
+</html>
